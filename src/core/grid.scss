@@ -1,0 +1,41 @@
+// Default grid options.
+$tmp-grid-box-width: 960;
+$tmp-grid-box-column: 12;
+$tmp-grid-box-gutter: 10;
+
+$tmp-grid-gutter-size: (($tmp-grid-box-gutter / $tmp-grid-box-width) * 100%);
+
+// Grid container generator.
+@mixin grid-box($opt: 960 12 20) {
+    @if (length($opt) >= 1) {
+        $tmp-grid-box-width: nth($opt, 1) !global;
+    } @else if (length($opt) >= 2) {
+        $tmp-grid-box-column: nth($opt, 2) !global;
+    } @else if (length($opt) >= 3) {
+        $tmp-grid-box-gutter: nth($opt, 3) !global;
+    }
+
+    $tmp-grid-gutter-size: (($tmp-grid-box-gutter / $tmp-grid-box-width) * 100%) !global;
+
+    @include clearfix;
+
+    display: block;
+    width: (100% + $tmp-grid-gutter-size);
+    margin-left: -($tmp-grid-gutter-size);
+}
+
+// Grid column generator.
+@mixin grid-col($opt: 12) {
+    display: block;
+    width: ((100% / $tmp-grid-box-column) * $opt) + ($tmp-grid-gutter-size * ($opt - 1));
+    margin-left: $tmp-grid-gutter-size;
+    float: left;
+}
+
+@mixin grid-push($opt: 12) {
+    padding-left: ((100% / $tmp-grid-box-column) * $opt) + ($tmp-grid-gutter-size * ($opt - 1));
+}
+
+@mixin grid-pull($opt: 12) {
+    padding-right: ((100% / $tmp-grid-box-column) * $opt) + ($tmp-grid-gutter-size * ($opt - 1));
+}
