@@ -411,6 +411,25 @@ body {
   background-image: -moz-linear-gradient(-90deg, #fff, #ff8), -moz-linear-gradient(-90deg, #dff, #3d8), -moz-radial-gradient(center, #ae9, #d38), -moz-linear-gradient(-90deg, #73d, #f83), -moz-radial-gradient(center, #dd9, #88d), -moz-radial-gradient(center, #a9f, #ff1), -moz-linear-gradient(-90deg, #99d, #1f0);
   background-image: -ms-linear-gradient(-90deg, #fff, #ff8), -ms-linear-gradient(-90deg, #dff, #3d8), -ms-radial-gradient(center, #ae9, #d38), -ms-linear-gradient(-90deg, #73d, #f83), -ms-radial-gradient(center, #dd9, #88d), -ms-radial-gradient(center, #a9f, #ff1), -ms-linear-gradient(-90deg, #99d, #1f0);
   background-image: -o-linear-gradient(-90deg, #fff, #ff8), -o-linear-gradient(-90deg, #dff, #3d8), -o-radial-gradient(center, #ae9, #d38), -o-linear-gradient(-90deg, #73d, #f83), -o-radial-gradient(center, #dd9, #88d), -o-radial-gradient(center, #a9f, #ff1), -o-linear-gradient(-90deg, #99d, #1f0);
+  background-image: -webkit-linear-gradient(-90deg, #fff, #ff8), -webkit-linear-gradient(-90deg, #dff, #3d8), -webkit-radial-gradient(center, #ae9, #d38), -webkit-linear-gradient(-90deg, #73d, #f83), -webkit-radial-gradient(center, #dd9, #88d), -webkit-radial-gradient(center, #a9f, #ff1), -webkit-linear-gradient(-90deg, #99d, #1f0);
+  background-image: -moz-linear-gradient(-90deg, #fff, #ff8), -moz-linear-gradient(-90deg, #dff, #3d8), -moz-radial-gradient(center, #ae9, #d38), -moz-linear-gradient(-90deg, #73d, #f83), -moz-radial-gradient(center, #dd9, #88d), -moz-radial-gradient(center, #a9f, #ff1), -moz-linear-gradient(-90deg, #99d, #1f0);
+  background-image: -ms-linear-gradient(-90deg, #fff, #ff8), -ms-linear-gradient(-90deg, #dff, #3d8), -ms-radial-gradient(center, #ae9, #d38), -ms-linear-gradient(-90deg, #73d, #f83), -ms-radial-gradient(center, #dd9, #88d), -ms-radial-gradient(center, #a9f, #ff1), -ms-linear-gradient(-90deg, #99d, #1f0);
+  background-image: -o-linear-gradient(-90deg, #fff, #ff8), -o-linear-gradient(-90deg, #dff, #3d8), -o-radial-gradient(center, #ae9, #d38), -o-linear-gradient(-90deg, #73d, #f83), -o-radial-gradient(center, #dd9, #88d), -o-radial-gradient(center, #a9f, #ff1), -o-linear-gradient(-90deg, #99d, #1f0);
+}
+
+.simple-box {
+  display: inline-block;
+  width: 320px;
+  height: 240px;
+  *display: inline;
+  zoom: 1;
+}
+@media only screen and (max-width: 509px) and (min-device-width: 1024px), (max-device-width: 480px) and (orientation: portrait) {
+  .simple-box {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
 }
 
 /*# sourceMappingURL=test.css.map */
