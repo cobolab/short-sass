@@ -1882,8 +1882,8 @@ $desktop-uhd            : "only screen and (min-width: 3800px)";
         @include box-sizing(border-box);
     }
 
-    // Resetting ul that contains class.
-    ul[class] {
+    // Resetting.
+    ul {
         @include block();
 
         margin: 0;
@@ -1891,8 +1891,8 @@ $desktop-uhd            : "only screen and (min-width: 3800px)";
         list-style: none;
     }
 
-    // Reseting input that has class.
-    input[class] {
+    // Reseting.
+    input {
         @include appearance(none);
 
         &:focus {

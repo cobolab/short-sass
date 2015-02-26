@@ -315,14 +315,14 @@ body * {
   box-sizing: border-box;
 }
 
-ul[class] {
+ul {
   display: block;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-input[class]:focus {
+input:focus {
   outline: none;
 }
 
