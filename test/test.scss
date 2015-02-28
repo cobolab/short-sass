@@ -75,3 +75,41 @@ body {
         @include block(100% auto);
     }
 }
+
+.flex-test {
+    @include flex(1% 1% 100%);
+}
+
+.container {
+    @include container(960px 10px 10px);
+}
+
+.flex-grid {
+    @include grid(960 12 10);
+
+    .column {
+        @include grid-col(3 start center);
+
+        background-color: #ccc;
+    }
+
+    &[column="4"] {
+        .column {
+            @include grid-col(3 start center);
+        }
+    }
+}
+
+.flex-grid2 {
+    @include flex-box(space-between stretch);
+    @include flex-wrap;
+
+    .column {
+        @include flex-basis(25%);
+        @include flex-shrink(1);
+
+        margin-left: 10px;
+        margin-bottom: 10px;
+        background-color: #ccc;
+    }
+}

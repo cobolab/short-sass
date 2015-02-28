@@ -1,32 +1,31 @@
 {
-    "name": "short-sass",
-    "version": "1.0.2",
-    "description": "Just another SASS library, simplify the way you use SASS.",
-    "repository": {
-        "url": "https://github.com/short-sass/short-sass",
-        "type": "git"
-    },
-    "dependencies": {
-
-    },
-    "main": "Gruntfile.js",
-    "devDependencies": {
-        "grunt": "*",
-        "grunt-contrib-concat": "*",
-        "grunt-contrib-sass": "^0.9.2"
-    },
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [
-        "sass",
-        "css",
-        "library"
-    ],
-    "author": "Nanang Mahdaen El Agung <nanang@mahdaen.name>",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/short-sass/short-sass/issues"
-    },
-    "homepage": "https://github.com/short-sass/short-sass"
+  "name": "short-sass",
+  "version": "1.1.0",
+  "description": "Just another SASS library, simplify the way you use SASS.",
+  "repository": {
+    "url": "https://github.com/short-sass/short-sass",
+    "type": "git"
+  },
+  "dependencies": {},
+  "main": "Gruntfile.js",
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-sass": "^0.9.2",
+    "grunt-contrib-watch": "^0.6.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sass",
+    "css",
+    "library"
+  ],
+  "author": "Nanang Mahdaen El Agung <nanang@mahdaen.name>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/short-sass/short-sass/issues"
+  },
+  "homepage": "https://github.com/short-sass/short-sass"
 }

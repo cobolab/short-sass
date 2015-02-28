@@ -109,4 +109,5 @@ We still working on documentation and trying to add more shorthand. Feel free to
 ### **Release History**
 ***
 
+* 2015-02-28          v1.1.0          "First release."
 * 2015-02-25          v1.0.0          "First release."

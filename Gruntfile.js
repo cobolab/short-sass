@@ -21,6 +21,7 @@ module.exports = function (grunt) {
                         "src/core/grid.scss",
                         "src/core/transform.scss",
                         "src/core/position.scss",
+                        "src/core/layout.scss",
 
                         "src/core/border.scss",
                         "src/core/shadow.scss",
@@ -45,11 +46,21 @@ module.exports = function (grunt) {
                     'test/test.css': 'test/test.scss'
                 }
             }
+        },
+        watch: {
+            options: {
+                livereload: 1849
+            },
+            origin: {
+                files: ['src/**/*.scss', 'test/**/*.scss'],
+                tasks: ['concat', 'sass']
+            }
         }
     });
 
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-sass');
 
-    grunt.registerTask('default', ['concat', 'sass']);
+    grunt.registerTask('default', ['concat', 'sass', 'watch']);
 }

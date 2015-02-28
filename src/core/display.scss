@@ -49,11 +49,6 @@
 	@include set-display(inline-table, $size);
 }
 
-
-@mixin flex-box($size: none) {
-	@include set-display(flex, $size);
-}
-
 @mixin inline-flex($size: none) {
 	@include set-display(inline-flex, $size);
 }
