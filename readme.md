@@ -87,6 +87,76 @@ body {
         @include block(100% auto);
     }
 }
+
+// What about flex box? or grid which has same height in each row? Forget about prefix!
+.flex-test {
+    @include flex-box-column(center center);
+}
+
+// Flex Grid.
+.grid-test {
+    @include grid(960 12 20);
+    
+    .column {
+        @include grid-col(3 center center);
+    }
+}
+
+// With grid mixin above you're from this crazy stuff. :D
+.grid-test {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  width: 102.08333%;
+  -webkit-box-direction: row;
+  -webkit-box-orient: row;
+  -webkit-moz-direction: row;
+  -webkit-moz-orient: row;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: flex-start;
+  -moz-box-pack: flex-start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: stretch;
+  -moz-box-align: stretch;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+  -ms-flex-align: stretch;
+  margin-left: -2.08333%;
+}
+.grid-test .column {
+  -ms-flex-preferred-size: 22.91667%;
+  -webkit-flex-basis: 22.91667%;
+  flex-basis: 22.91667%;
+  margin-left: 2.08333%;
+  margin-bottom: 2.08333%;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: flex-start;
+  -moz-box-pack: flex-start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -ms-flex-align: center;
+}
+
 ```
 
 ### **Download**
