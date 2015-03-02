@@ -113,3 +113,21 @@ body {
         background-color: #ccc;
     }
 }
+
+.grid-test {
+    @include grid(960 12 20);
+
+    .column {
+        @include grid-col(3 start center);
+    }
+}
+
+.flex-test {
+    @include flex-box-row(start stretch);
+
+    .column {
+        @include flex;
+
+        background-color: #ddd;
+    }
+}

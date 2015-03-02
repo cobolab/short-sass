@@ -75,7 +75,7 @@ $tmp-text-shadow-e-value: none;
 // LONG DROP SHADOW
 // @include long-drop-shadow(top left distance blur color);
 @mixin long-drop-shadow($config: none) {
-    @if ($config != none and length($config == 5)) {
+    @if ($config != none and length($config) == 5) {
         @include long-shadow-generator(box-shadow, $config);
     }
 }
@@ -83,7 +83,7 @@ $tmp-text-shadow-e-value: none;
 // LONG TEXT SHADOW
 // @include long-text-shadow(top left distance blur color);
 @mixin long-text-shadow($config: none) {
-    @if ($config != none and length($config == 5)) {
+    @if ($config != none and length($config) == 5) {
         @include long-shadow-generator(text-shadow, $config);
     }
 }

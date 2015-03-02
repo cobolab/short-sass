@@ -66,53 +66,47 @@
 // @include border(0 10px solid #333);
 // @include border (0 10px 16px 20px solid #333);
 @mixin border($borval: 0 0 solid #000) {
-    $top: none; $rgt: none; $btm: none; $lft: none; $stl: none; $clr: none;
+    $brtop: none; $brrgt: none; $brbtm: none; $brlft: none; $brstl: none; $brclr: none;
 
     // top-bottom left-right
-    @if length($borval) >= 4 {
-        $top: nth($borval, 1); $rgt: nth($borval, 2); $btm: nth($borval, 1); $lft: nth($borval, 2);
+    @if (length($brval) >= 4) {
+        $brtop: nth($brval, 1); $brrgt: nth($brval, 2); $brbtm: nth($brval, 1); $brlft: nth($brval, 2);
 
-        $stl: nth($borval, 3); $clr: nth($borval, 4);
+        $brstl: nth($brval, 3); $brclr: nth($brval, 4);
     }
 
     // top right bottom
-    @if length($mobile >= 5) {
-        $btm: nth($borval, 3); $lft: none;
+    @if (length($mobile) >= 5) {
+        $brbtm: nth($brval, 3); $brlft: none;
 
-        $stl: nth($borval, 4); $clr: nth($borval, 5);
+        $brstl: nth($brval, 4); $brclr: nth($brval, 5);
     }
 
     // top right bottom left
-    @if length($borval) == 6 {
-        $btm: nth($borval, 3); $lft: nth($borval, 4);
+    @if (length($brval) == 6) {
+        $brbtm: nth($brval, 3); $brlft: nth($brval, 4);
 
-        $stl: nth($borval, 5); $clr: nth($borval, 6);
+        $brstl: nth($brval, 5); $brclr: nth($brval, 6);
     }
 
-    @if ($stl != none) {
-        border-style: $stl;
+    @if ($brtop != none) {
+        border-top: $brtop $brstl $brclr;
     }
-    @if ($clr != none) {
-        border-color: $clr;
+    @if ($brrgt != none) {
+        border-right: $brrgt $brstl $brclr;
     }
-    @if ($top != none) {
-        border-top-width: $top;
+    @if ($brbtm != none) {
+        border-bottom: $brbtm $brstl $brclr;
     }
-    @if ($rgt != none) {
-        border-right-width: $rgt;
-    }
-    @if ($btm != none) {
-        border-bottom-width: $btm;
-    }
-    @if ($lft != none) {
-        border-left-width: $lft;
+    @if ($brlft != none) {
+        border-left: $brlft $brstl $brclr;
     }
 }
 
 // LONG SHADOW GENERATOR.
 // @include long-shadow-generator(top, left, distance, blur, color);
 @mixin long-shadow-generator($type, $config) {
-    @if (length($config == 5)) {
+    @if (length($config) == 5) {
         $tpe: nth($type, 1);
         $top: nth($config, 1);
         $lft: nth($config, 2);
