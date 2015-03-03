@@ -179,6 +179,7 @@ We still working on documentation and trying to add more shorthand. Feel free to
 ### **Release History**
 ***
 
+* 2015-03-02          v1.1.3          "Fixing issues"
 * 2015-03-02          v1.1.2          "Fixing set-display mixin"
 * 2015-03-01          v1.1.1          "Fixing issues with length()."
 * 2015-02-28          v1.1.0          "Added flex box helper."

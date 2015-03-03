@@ -69,24 +69,24 @@
     $brtop: none; $brrgt: none; $brbtm: none; $brlft: none; $brstl: none; $brclr: none;
 
     // top-bottom left-right
-    @if (length($brval) >= 4) {
-        $brtop: nth($brval, 1); $brrgt: nth($brval, 2); $brbtm: nth($brval, 1); $brlft: nth($brval, 2);
+    @if (length($borval) >= 4) {
+        $brtop: nth($borval, 1); $brrgt: nth($borval, 2); $brbtm: nth($borval, 1); $brlft: nth($borval, 2);
 
-        $brstl: nth($brval, 3); $brclr: nth($brval, 4);
+        $brstl: nth($borval, 3); $brclr: nth($borval, 4);
     }
 
     // top right bottom
     @if (length($mobile) >= 5) {
-        $brbtm: nth($brval, 3); $brlft: none;
+        $brbtm: nth($borval, 3); $brlft: none;
 
-        $brstl: nth($brval, 4); $brclr: nth($brval, 5);
+        $brstl: nth($borval, 4); $brclr: nth($borval, 5);
     }
 
     // top right bottom left
-    @if (length($brval) == 6) {
-        $brbtm: nth($brval, 3); $brlft: nth($brval, 4);
+    @if (length($borval) == 6) {
+        $brbtm: nth($borval, 3); $brlft: nth($borval, 4);
 
-        $brstl: nth($brval, 5); $brclr: nth($brval, 6);
+        $brstl: nth($borval, 5); $brclr: nth($borval, 6);
     }
 
     @if ($brtop != none) {

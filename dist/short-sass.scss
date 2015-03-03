@@ -1,36 +1,6 @@
 // VARIABLE COLLECTIONS.
 // ----------------------------------------------
 
-// Enable or disable responsive.
-$responsive-transform   : false;
-
-// Default Input Placeholder Color.
-$def-pld-clr            : #555;
-
-// Default border shortand size and color.
-$def-brd                : 1px;
-$def-bcl                : #cccccc;
-
-// Default Display Property.
-$def-display-val        : block;
-
-// Default position value.
-$def-pos-val            : none none none none;
-
-// Long shadow config.
-$def-shadow-depth       : 1;        // from 0.5 to 5.
-
-// Default effect timing.
-$def-etime              : .3s;      // Normal.
-$def-etime-f            : .2s;      // Fast.
-$def-etime-s            : .6s;      // Slow.
-
-// Default Grid Option.
-$def-grid-option        : 960 12 10;
-
-// Default font-styles.
-$def-font-style         : Hairline HairlineItalic Thin ThinItalic Light LightItalic Regular Italic Medium MediumItalic Semibold SemiboldItalic Bold BoldItalic 'Black' BlackItalic Heavy HeavyItalic;
-
 // Concat list or map.
 @function concat($list...) {
     $value: '';
@@ -191,24 +161,24 @@ $def-font-style         : Hairline HairlineItalic Thin ThinItalic Light LightIta
     $brtop: none; $brrgt: none; $brbtm: none; $brlft: none; $brstl: none; $brclr: none;
 
     // top-bottom left-right
-    @if (length($brval) >= 4) {
-        $brtop: nth($brval, 1); $brrgt: nth($brval, 2); $brbtm: nth($brval, 1); $brlft: nth($brval, 2);
+    @if (length($borval) >= 4) {
+        $brtop: nth($borval, 1); $brrgt: nth($borval, 2); $brbtm: nth($borval, 1); $brlft: nth($borval, 2);
 
-        $brstl: nth($brval, 3); $brclr: nth($brval, 4);
+        $brstl: nth($borval, 3); $brclr: nth($borval, 4);
     }
 
     // top right bottom
     @if (length($mobile) >= 5) {
-        $brbtm: nth($brval, 3); $brlft: none;
+        $brbtm: nth($borval, 3); $brlft: none;
 
-        $brstl: nth($brval, 4); $brclr: nth($brval, 5);
+        $brstl: nth($borval, 4); $brclr: nth($borval, 5);
     }
 
     // top right bottom left
-    @if (length($brval) == 6) {
-        $brbtm: nth($brval, 3); $brlft: nth($brval, 4);
+    @if (length($borval) == 6) {
+        $brbtm: nth($borval, 3); $brlft: nth($borval, 4);
 
-        $brstl: nth($brval, 5); $brclr: nth($brval, 6);
+        $brstl: nth($borval, 5); $brclr: nth($borval, 6);
     }
 
     @if ($brtop != none) {
@@ -1854,8 +1824,8 @@ $mobile-portrait        : "only screen and (max-width: 509px) and (min-device-wi
 $mobile-landscape       : "only screen and (max-width: 509px) and (min-device-width: 1024px), (max-device-width: 480px) and (orientation: landscape)";
 
 $tablet                 : "only screen and (min-device-width : 768px) and (max-device-width : 1024px), (min-width: 768px) and (max-width: 1200px)";
-$tablet-portrait        : "only screen and (max-device-width: 1024px) and (min-device-width: 481px) and (orientation: portrait)";
-$tablet-landscape       : "only screen and (max-width: 989px) and (min-device-width: 1024px), screen and (max-device-width: 480px), (max-device-width: 480px) and (orientation: landscape)";
+$tablet-portrait        : "only screen and (max-device-width: 1024px) and (min-device-width: 480px) and (orientation: portrait)";
+$tablet-landscape       : "only screen and (max-device-width: 1024px) and (min-device-width: 480px) and (orientation: landscape)";
 
 $desktop                : "only screen and (min-width: 1200px)";
 $desktop-mdm            : "only screen and (min-width: 1400px)";
