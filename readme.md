@@ -179,6 +179,7 @@ We still working on documentation and trying to add more shorthand. Feel free to
 ### **Release History**
 ***
 
+* 2015-03-10          v1.1.5          "Fixing issues"
 * 2015-03-03          v1.1.4          "Fixing issues"
 * 2015-03-03          v1.1.3          "Fixing issues"
 * 2015-03-02          v1.1.2          "Fixing set-display mixin"

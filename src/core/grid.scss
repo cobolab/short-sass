@@ -98,7 +98,7 @@ $tmp-flex-column-size: ((100% / $tmp-flex-box-column) - $tmp-flex-gutter-size);
     }
 
     margin-left: $tmp-flex-gutter-size;
-    margin-bottom: $tmp-flex-gutter-size;
+    margin-bottom: #{$tmp-flex-box-gutter}px;
 
     @if (length($opt) >= 2) {
         @include flex-block;
