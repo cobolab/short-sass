@@ -72,3 +72,13 @@ $tmp-transition-value: none;
 @mixin public-effect-slow() {
     @include transition(all $def-etime-s ease-in-out);
 }
+
+// Keyframe Mixin @2.1.0
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+    @keyframes #{$name} {
+        @content;
+    }
+}

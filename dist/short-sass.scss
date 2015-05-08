@@ -688,44 +688,6 @@ $important : '';
     font-style: oblique#{$important};
 }
 
-// Overflow wrapper @2.0.0
-@mixin of-visible {
-    overflow : visible#{$important};
-}
-@mixin of-visible-x {
-    overflow-x: visible#{$important};
-}
-@mixin of-visible-y {
-    overflow-y: visible#{$important};
-}
-@mixin of-hidden {
-    overflow : hidden#{$important};
-}
-@mixin of-hidden-x {
-    overflow-x: hidden#{$important};
-}
-@mixin of-hidden-y {
-    overflow-y: hidden#{$important};
-}
-@mixin of-scroll {
-    overflow : scroll#{$important};
-}
-@mixin of-scroll-x {
-    overflow-x: scroll#{$important};
-}
-@mixin of-scroll-y {
-    overflow-y: scroll#{$important};
-}
-@mixin of-auto {
-    overflow : auto#{$important};
-}
-@mixin of-auto-x {
-    overflow-x: auto#{$important};
-}
-@mixin of-auto-y {
-    overflow-y: auto#{$important};
-}
-
 // Text Overflow wrapper @2.0.0
 @mixin text-clip {
     text-overflow: clip#{$important};
@@ -888,6 +850,16 @@ $tmp-transition-value: none;
 }
 @mixin public-effect-slow() {
     @include transition(all $def-etime-s ease-in-out);
+}
+
+// Keyframe Mixin @2.1.0
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+    @keyframes #{$name} {
+        @content;
+    }
 }
 
 @mixin block($size: none) {
@@ -2610,3 +2582,60 @@ $desktop-uhd            : "only screen and (min-width: 3800px)";
 @mixin dir-rtl {
     direction: rtl#{$important};
 }
+
+
+// Overflow wrapper @2.0.0
+@mixin of-visible {
+    overflow : visible#{$important};
+}
+@mixin of-visible-x {
+    overflow-x: visible#{$important};
+}
+@mixin of-visible-y {
+    overflow-y: visible#{$important};
+}
+@mixin of-hidden {
+    overflow : hidden#{$important};
+}
+@mixin of-hidden-x {
+    overflow-x: hidden#{$important};
+}
+@mixin of-hidden-y {
+    overflow-y: hidden#{$important};
+}
+@mixin of-scroll {
+    overflow : scroll#{$important};
+}
+@mixin of-scroll-x {
+    overflow-x: scroll#{$important};
+}
+@mixin of-scroll-y {
+    overflow-y: scroll#{$important};
+}
+@mixin of-auto {
+    overflow : auto#{$important};
+}
+@mixin of-auto-x {
+    overflow-x: auto#{$important};
+}
+@mixin of-auto-y {
+    overflow-y: auto#{$important};
+}
+
+// Touch scroll wrapper @2.1.0
+@mixin touch-scroll {
+    @include of-scroll;
+
+    -webkit-overflow-scrolling: touch#{$important};
+}
+@mixin touch-scroll-x {
+    @include of-scroll-x;
+
+    -webkit-overflow-scrolling: touch#{$important};
+}
+@mixin touch-scroll-y {
+    @include of-scroll-y;
+
+    -webkit-overflow-scrolling: touch#{$important};
+}
+

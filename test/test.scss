@@ -139,3 +139,13 @@ $testing: appearance;
     }
     @include font('proximanova-regular' 14px 24px #555 600);
 }
+
+.wrapper {
+    @include touch-scroll;
+}
+.wrapper-x {
+    @include touch-scroll-x;
+}
+.wrapper-y {
+    @include touch-scroll-y;
+}

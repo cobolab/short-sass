@@ -659,4 +659,19 @@ body {
   font-weight: 600;
 }
 
+.wrapper {
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.wrapper-x {
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.wrapper-y {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
 /*# sourceMappingURL=test.css.map */

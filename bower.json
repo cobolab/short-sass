@@ -1,6 +1,6 @@
 {
     "name": "short-sass",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "description": "Just another SASS library, simplify the way you use SASS.",
     "main": "dist/short-sass.scss",
     "ignore": [
