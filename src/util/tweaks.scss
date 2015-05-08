@@ -30,3 +30,65 @@
         @content;
     }
 }
+
+// Mouse pointer mixins @2.0.0
+@mixin csr-default {
+    cursor: default#{$important};
+}
+@mixin csr-pointer {
+    cursor: pointer#{$important};
+}
+@mixin csr-wait {
+    cursor : wait#{$important};
+}
+@mixin csr-crosshair {
+    cursor : crosshair#{$important};
+}
+@mixin csr-text {
+    cursor : text#{$important};
+}
+@mixin csr-not-allowed {
+    cursor : not-allowed#{$important};
+}
+@mixin csr-all-scroll {
+    cursor : all-scroll#{$important};
+}
+@mixin csr-zoom-in {
+    cursor : zoom-in#{$important};
+}
+@mixin csr-zoom-out {
+    cursor : zoom-out#{$important};
+}
+
+// Box Decoration Break wrapper @2.0.0
+@mixin box-slice {
+    @include box-decoration-break(slice);
+}
+@mixin box-clone {
+    @include box-decoration-break(clone);
+}
+
+// Box Sizing wrapper @2.0.0
+@mixin resize-inherit {
+    @include box-sizing(inherit);
+}
+@mixin resize-content {
+    @include box-sizing(content-box);
+}
+@mixin resize-padding {
+    @include box-sizing(padding-box);
+}
+@mixin resize-border {
+    @include box-sizing(border-box);
+}
+
+// Direction wrapper @2.0.0.
+@mixin dir-inherit {
+    direction: inheri#{$important}t;
+}
+@mixin dir-ltr {
+    direction: ltr#{$important};
+}
+@mixin dir-rtl {
+    direction: rtl#{$important};
+}

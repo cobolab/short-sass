@@ -204,22 +204,22 @@
 }
 
 // Appearance.
-@mixin appearance($arg) {
-	@include prefixer(appearance, $arg, true);
+@mixin appearance($value) {
+	@include prefixer(appearance, $value, true);
 }
 
 // Box Sizing.
-@mixin box-sizing($arg) {
-	@include prefixer(box-sizing, $arg, true);
+@mixin box-sizing($value) {
+	@include prefixer(box-sizing, $value, true);
 }
 
 // Backface Visibility.
-@mixin backface-visibility($arg) {
-	@include prefixer(backface-visibility, $arg, true);
+@mixin backface-visibility($value) {
+	@include prefixer(backface-visibility, $value, true);
 }
 
 // User select.
-@mixin user-select($arg) {
-	@include prefixer(user-select, $arg, true);
+@mixin user-select($value) {
+	@include prefixer(user-select, $value, true);
 }
 

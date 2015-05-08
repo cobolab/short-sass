@@ -131,3 +131,11 @@ body {
         background-color: #ddd;
     }
 }
+$testing: appearance;
+.head-typo {
+    @include important {
+        @include appearance(initial);
+        @include block(100% none);
+    }
+    @include font('proximanova-regular' 14px 24px #555 600);
+}

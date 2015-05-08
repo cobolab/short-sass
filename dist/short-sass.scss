@@ -120,24 +120,35 @@ $def-font-style         : Hairline HairlineItalic Thin ThinItalic Light LightIta
 
     @return $value;
 }
+// Important configurator.
+$important : '';
+
+@mixin unimportant {
+    $important : '' !global;
+}
+
+@mixin important {
+    $important : ' !important' !global; @content; @include unimportant;
+}
+
 // CSS3 PREFIXER
 // @include prefixer(property, value, default);
-@mixin prefixer($prop: none, $value: none, $native: true) {
+@mixin prefixer($prop : none, $value : none, $native : true) {
     @if ($prop != none and $value != none) {
-        -webkit-#{$prop}: $value;
-        -moz-#{$prop}: $value;
-        -ms-#{$prop}: $value;
-        -o-#{$prop}: $value;
+        -webkit-#{$prop}: $value#{$important};
+        -moz-#{$prop}   : $value#{$important};
+        -ms-#{$prop}    : $value#{$important};
+        -o-#{$prop}     : $value#{$important};
 
         @if ($native == true) {
-            #{$prop}: $value;
+            #{$prop}: $value#{$important};
         }
     }
 }
 
 // MEDIA QUERY PREFIXER
 // @include media(only screen and (max-width: 800px)) { }
-@mixin media($query: none) {
+@mixin media($query : none) {
     @if ($query != none) {
         @media #{$query} {
             @content;
@@ -147,81 +158,145 @@ $def-font-style         : Hairline HairlineItalic Thin ThinItalic Light LightIta
 
 // FONT-FACE GENERATOR MIXINS.
 // @include font-family(NAME SOURCE STYLE STRETCH WEIGHT);
-@mixin font-family($font: 'arial' 'font/arial' 400 normal normal) {
-    $name: nth($font, 1); $src: nth($font, 2); $style: normal; $weight: 400; $stretch: normal;
+@mixin font-family($font : 'arial' 'font/arial' 400 normal normal) {
+    $name : nth($font, 1);
+    $src : nth($font, 2);
+    $style : normal;
+    $weight : 400;
+    $stretch : normal;
 
     @if length($font) == 3 {
-        $style		: nth($font, 4);
+        $style : nth($font, 4);
     }
     @if length($font) == 4 {
-        $stretch	: nth($font, 5);
+        $stretch : nth($font, 5);
     }
     @if length($font) == 5 {
-        $weight		: nth($font, 3);
+        $weight : nth($font, 3);
     }
 
     @font-face {
-        font-family : "#{$name}";
-        src: local("#{$name}");
+        font-family  : "#{$name}";
+        src          : local("#{$name}");
 
-        src: url("#{$src}.eot");
-        src: url("#{$src}.eot#iefix") format("embedded-opentype"),
-             url("#{$src}.svg") format("svg"),
-             url("#{$src}.ttf") format("truetype"),
-             url("#{$src}.woff") format("woff");
+        src          : url("#{$src}.eot");
+        src          : url("#{$src}.eot#iefix") format("embedded-opentype"),
+        url("#{$src}.svg") format("svg"),
+        url("#{$src}.ttf") format("truetype"),
+        url("#{$src}.woff") format("woff");
 
-        font-style		: $style;
-        font-weight		: $weight;
-        font-stretch	: $stretch;
+        font-style   : $style;
+        font-weight  : $weight;
+        font-stretch : $stretch;
     }
 }
 
 // COMPLEX FONT GENERATOR.
 // @include font-faces(FONT-NAME SOURCE-FOLDER, STYLE);
-@mixin font-faces($font: 'arial' 'assets/font/', $style: regular) {
+@mixin font-faces($font : 'arial' 'assets/font/', $style : regular) {
     @for $i from 1 through length($style) {
         @include font-family('#{nth($font, 1)} #{nth($style, $i)}' '#{nth($font, 2)}#{nth($font, 1)}-#{nth($style, $i)}');
+    }
+}
+
+// Font Definitions
+// @include font($family, $size, $line-height, $color, $weight);
+@mixin font($option : none) {
+    @if ($option != none) {
+        // Creating variables.
+        $name : none;
+        $size : none;
+        $height : none;
+        $color : none;
+        $weight : none;
+
+        // Getting values from $options and set to variable if defined.
+        @if (length($option) >= 1) {
+            $name : nth($option, 1);
+        }
+        @if (length($option) >= 2) {
+            $size : nth($option, 2);
+        }
+        @if (length($option) >= 3) {
+            $height : nth($option, 3);
+        }
+        @if (length($option) >= 4) {
+            $color : nth($option, 4);
+        }
+        @if (length($option) >= 5) {
+            $weight : nth($option, 5);
+        }
+
+        // Appliying properties.
+        @if ($name != none) {
+            font-family : $name#{$important};
+        }
+        @if ($size != none) {
+            font-size : $size#{$important};
+        }
+        @if ($height != none) {
+            line-height : $height#{$important};
+        }
+        @if ($color != none) {
+            color : $color#{$important};
+        }
+        @if ($weight != none) {
+            font-weight : $weight#{$important};
+        }
     }
 }
 
 // BORDER SHORTHAND MIXINS.
 // @include border(0 10px solid #333);
 // @include border (0 10px 16px 20px solid #333);
-@mixin border($borval: 0 0 solid #000) {
-    $brtop: none; $brrgt: none; $brbtm: none; $brlft: none; $brstl: none; $brclr: none;
+@mixin border($borval : 0 0 solid #000000) {
+    $brtop : none;
+    $brrgt : none;
+    $brbtm : none;
+    $brlft : none;
+    $brstl : none;
+    $brclr : none;
 
     // top-bottom left-right
     @if (length($borval) >= 4) {
-        $brtop: nth($borval, 1); $brrgt: nth($borval, 2); $brbtm: nth($borval, 1); $brlft: nth($borval, 2);
+        $brtop : nth($borval, 1);
+        $brrgt : nth($borval, 2);
+        $brbtm : nth($borval, 1);
+        $brlft : nth($borval, 2);
 
-        $brstl: nth($borval, 3); $brclr: nth($borval, 4);
+        $brstl : nth($borval, 3);
+        $brclr : nth($borval, 4);
     }
 
     // top right bottom
     @if (length($mobile) >= 5) {
-        $brbtm: nth($borval, 3); $brlft: none;
+        $brbtm : nth($borval, 3);
+        $brlft : none;
 
-        $brstl: nth($borval, 4); $brclr: nth($borval, 5);
+        $brstl : nth($borval, 4);
+        $brclr : nth($borval, 5);
     }
 
     // top right bottom left
     @if (length($borval) == 6) {
-        $brbtm: nth($borval, 3); $brlft: nth($borval, 4);
+        $brbtm : nth($borval, 3);
+        $brlft : nth($borval, 4);
 
-        $brstl: nth($borval, 5); $brclr: nth($borval, 6);
+        $brstl : nth($borval, 5);
+        $brclr : nth($borval, 6);
     }
 
     @if ($brtop != none) {
-        border-top: $brtop $brstl $brclr;
+        border-top : $brtop $brstl $brclr#{$important};
     }
     @if ($brrgt != none) {
-        border-right: $brrgt $brstl $brclr;
+        border-right : $brrgt $brstl $brclr#{$important};
     }
     @if ($brbtm != none) {
-        border-bottom: $brbtm $brstl $brclr;
+        border-bottom : $brbtm $brstl $brclr#{$important};
     }
     @if ($brlft != none) {
-        border-left: $brlft $brstl $brclr;
+        border-left : $brlft $brstl $brclr#{$important};
     }
 }
 
@@ -229,36 +304,35 @@ $def-font-style         : Hairline HairlineItalic Thin ThinItalic Light LightIta
 // @include long-shadow-generator(top, left, distance, blur, color);
 @mixin long-shadow-generator($type, $config) {
     @if (length($config) == 5) {
-        $tpe: nth($type, 1);
-        $top: nth($config, 1);
-        $lft: nth($config, 2);
-        $dis: nth($config, 3);
-        $blr: nth($config, 4);
-        $clr: nth($config, 5);
+        $tpe : nth($type, 1);
+        $top : nth($config, 1);
+        $lft : nth($config, 2);
+        $dis : nth($config, 3);
+        $blr : nth($config, 4);
+        $clr : nth($config, 5);
 
-        $value: shadow-value($top, $lft, $dis, $blr, $clr);
+        $value : shadow-value($top, $lft, $dis, $blr, $clr);
 
         @include prefixer($type, $value, true);
     }
 }
 
 // DISPLAY SETTER.
-@mixin set-display($display: none, $size: none) {
-    display: $display;
+@mixin set-display($display : none, $size : none) {
+    display : $display#{$important};
 
     @if ($size != none) {
         @if (length($size) == 1) {
             @if (nth($size, 1) != none) {
-                width: nth($size, 1);
-                height: nth($size, 1);
+                width  : nth($size, 1)#{$important};
+                height : nth($size, 1)#{$important};
             }
-        }
-        @else if (length($size) == 2) {
+        } @else if (length($size) == 2) {
             @if (nth($size, 1) != none) {
-                width: nth($size, 1);
+                width : nth($size, 1)#{$important};
             }
             @if (nth($size, 2) != none) {
-                height: nth($size, 2);
+                height : nth($size, 2)#{$important};
             }
         }
     }
@@ -470,23 +544,23 @@ $def-font-style         : Hairline HairlineItalic Thin ThinItalic Light LightIta
 }
 
 // Appearance.
-@mixin appearance($arg) {
-	@include prefixer(appearance, $arg, true);
+@mixin appearance($value) {
+	@include prefixer(appearance, $value, true);
 }
 
 // Box Sizing.
-@mixin box-sizing($arg) {
-	@include prefixer(box-sizing, $arg, true);
+@mixin box-sizing($value) {
+	@include prefixer(box-sizing, $value, true);
 }
 
 // Backface Visibility.
-@mixin backface-visibility($arg) {
-	@include prefixer(backface-visibility, $arg, true);
+@mixin backface-visibility($value) {
+	@include prefixer(backface-visibility, $value, true);
 }
 
 // User select.
-@mixin user-select($arg) {
-	@include prefixer(user-select, $arg, true);
+@mixin user-select($value) {
+	@include prefixer(user-select, $value, true);
 }
 
 
@@ -494,129 +568,202 @@ $def-font-style         : Hairline HairlineItalic Thin ThinItalic Light LightIta
 @mixin opacity($arg) {
     @include prefixer(opacity, $arg, true);
 
-    filter: "alpha(opacity=#{($arg * 100)})";
+    filter: "alpha(opacity=#{($arg * 100)})"#{$important};
 }
 
 // Text Overflow.
 @mixin text-overflow {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    overflow: hidden#{$important};
+    text-overflow: ellipsis#{$important};
+    white-space: nowrap#{$important};
 }
 @mixin hyphens($value: auto) {
     @include prefixer(hyphens, $value, true);
 
-    word-wrap: break-word;
+    word-wrap: break-word#{$important};
 }
 
 // Clearfix.
 @mixin clearfix {
-    *zoom: 1;
+    *zoom: 1#{$important};
 
-    &:before, &:after { content: ""; display: table; }
-    &:after { clear: both; }
+    &:before, &:after { content: ""#{$important}; display: table#{$important}; }
+    &:after { clear: both#{$important}; }
 }
 
 // Container.
 @mixin container($arg: 960px 0 0) {
-    width: 100%;
-    max-width: nth($arg, 1);
-    margin: 0 auto;
+    width: 100%#{$important};
+    max-width: nth($arg, 1)#{$important};
+    margin: 0 auto#{$important};
 
     @if (length($arg) >= 2) {
-        padding-left: nth($arg, 2);
+        padding-left: nth($arg, 2)#{$important};
     }
     @if (length($arg) == 3) {
-        padding-right: nth($arg, 3);
+        padding-right: nth($arg, 3)#{$important};
     }
 }
 
 // Text Transform
 @mixin uppercase {
-    text-transform: uppercase;
+    text-transform: uppercase#{$important};
 }
 @mixin lowercase {
-    text-transform: lowercase;
+    text-transform: lowercase#{$important};
 }
 @mixin capitalize {
-    text-transform: capitalize;
+    text-transform: capitalize#{$important};
 }
 @mixin normal-case {
-    text-transform: none;
+    text-transform: none#{$important};
 }
 
 // Text Decoration
 @mixin underline {
-    text-decoration: underline;
+    text-decoration: underline#{$important};
 }
 @mixin line-through {
-    text-decoration: line-through;
+    text-decoration: line-through#{$important};
 }
 @mixin overline {
-    text-decoration: overline;
+    text-decoration: overline#{$important};
 }
 @mixin no-decoration {
-    text-decoration: none;
+    text-decoration: none#{$important};
 }
 
 // Text Util
 @mixin jutify {
-    text-align: justify;
-}
-@mixin no-wrap {
-    white-space: nowrap;
+    text-align: justify#{$important};
 }
 @mixin subscript {
-    vertical-align: sub;
+    vertical-align: sub#{$important};
 }
 @mixin superscript {
-    vertical-align: super;
+    vertical-align: super#{$important};
 }
 @mixin text-top {
-    vertical-align: text-top;
+    vertical-align: text-top#{$important};
 }
 @mixin text-bottom {
-    vertical-align: text-bottom;
+    vertical-align: text-bottom#{$important};
+}
+@mixin normal-wrap {
+    white-space: normal#{$important};
+}
+@mixin no-wrap {
+    white-space: nowrap#{$important};
+}
+@mixin pre-wrap {
+    white-space: pre-wrap#{$important};
+}
+@mixin pre-line {
+    white-space: pre-line#{$important};
+}
+@mixin break-word {
+    word-wrap: break-word#{$important};
+}
+@mixin break-all {
+    word-break: break-all#{$important};
+}
+@mixin keep-all {
+    word-break: keep-all#{$important};
 }
 
 // Font Smoothing.
 @mixin font-smoothing {
-    speak: none;
-    font-variant: normal;
+    speak: none#{$important};
+    font-variant: normal#{$important};
 
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased#{$important};
+    -moz-osx-font-smoothing: grayscale#{$important};
 }
+
+// Font style wrapper @2.0.0
+@mixin italic {
+    font-style: italic#{$important};
+}
+@mixin oblique {
+    font-style: oblique#{$important};
+}
+
+// Overflow wrapper @2.0.0
+@mixin of-visible {
+    overflow : visible#{$important};
+}
+@mixin of-visible-x {
+    overflow-x: visible#{$important};
+}
+@mixin of-visible-y {
+    overflow-y: visible#{$important};
+}
+@mixin of-hidden {
+    overflow : hidden#{$important};
+}
+@mixin of-hidden-x {
+    overflow-x: hidden#{$important};
+}
+@mixin of-hidden-y {
+    overflow-y: hidden#{$important};
+}
+@mixin of-scroll {
+    overflow : scroll#{$important};
+}
+@mixin of-scroll-x {
+    overflow-x: scroll#{$important};
+}
+@mixin of-scroll-y {
+    overflow-y: scroll#{$important};
+}
+@mixin of-auto {
+    overflow : auto#{$important};
+}
+@mixin of-auto-x {
+    overflow-x: auto#{$important};
+}
+@mixin of-auto-y {
+    overflow-y: auto#{$important};
+}
+
+// Text Overflow wrapper @2.0.0
+@mixin text-clip {
+    text-overflow: clip#{$important};
+}
+@mixin text-ellipsis {
+    text-overflow: ellipsis#{$important};
+}
+
 
 // X Alignment
 @mixin center-align {
-    text-align: center;
+    text-align: center#{$important};
 }
 @mixin middle-align {
-    vertical-align: middle;
+    vertical-align: middle#{$important};
 }
 @mixin align-left {
-    text-align: left;
+    text-align: left#{$important};
 }
 @mixin align-right {
-    text-align: right;
+    text-align: right#{$important};
 }
 @mixin align-center {
-    text-align: center;
+    text-align: center#{$important};
 }
 
 // Y Alignment
 @mixin align-top {
-    vertical-align: top;
+    vertical-align: top#{$important};
 }
 @mixin align-middle {
-    vertical-align: middle;
+    vertical-align: middle#{$important};
 }
 @mixin align-bottom {
-    vertical-align: bottom;
+    vertical-align: bottom#{$important};
 }
 @mixin align-baseline {
-    vertical-align: baseline;
+    vertical-align: baseline#{$important};
 }
 
 // Mixed Alignment
@@ -754,8 +901,8 @@ $tmp-transition-value: none;
 @mixin inline-block($size: none) {
 	@include set-display(inline-block, $size);
 
-    *display: inline;
-    zoom: 1;
+    *display: inline#{$important};
+    zoom: 1#{$important};
 }
 
 @mixin table($size: none) {
@@ -809,13 +956,13 @@ $tmp-transition-value: none;
 
 // Visibility.
 @mixin invisible {
-    visibility: hidden;
-    opacity: 0;
+    visibility: hidden#{$important};
+    opacity: 0#{$important};
 }
 
 @mixin visible {
-    visibility: visible;
-    opacity: 1;
+    visibility: visible#{$important};
+    opacity: 1#{$important};
 }
 
 @mixin hide {
@@ -837,16 +984,16 @@ $tmp-transition-value: none;
     @if ($size != none) {
         @if (length($size) == 1) {
             @if (nth($size, 1) != none) {
-                width: nth($size, 1);
-                height: nth($size, 1);
+                width: nth($size, 1)#{$important};
+                height: nth($size, 1)#{$important};
             }
         }
         @else if (length($size) == 2) {
             @if (nth($size, 1) != none) {
-                width: nth($size, 1);
+                width: nth($size, 1)#{$important};
             }
             @if (nth($size, 2) != none) {
-                height: nth($size, 2);
+                height: nth($size, 2)#{$important};
             }
         }
     }
@@ -855,16 +1002,16 @@ $tmp-transition-value: none;
     @if ($size != none) {
         @if (length($size) == 1) {
             @if (nth($size, 1) != none) {
-                max-width: nth($size, 1);
-                max-height: nth($size, 1);
+                max-width: nth($size, 1)#{$important};
+                max-height: nth($size, 1)#{$important};
             }
         }
         @else if (length($size) == 2) {
             @if (nth($size, 1) != none) {
-                max-width: nth($size, 1);
+                max-width: nth($size, 1)#{$important};
             }
             @if (nth($size, 2) != none) {
-                max-height: nth($size, 2);
+                max-height: nth($size, 2)#{$important};
             }
         }
     }
@@ -873,16 +1020,16 @@ $tmp-transition-value: none;
     @if ($size != none) {
         @if (length($size) == 1) {
             @if (nth($size, 1) != none) {
-                min-width: nth($size, 1);
-                min-height: nth($size, 1);
+                min-width: nth($size, 1)#{$important};
+                min-height: nth($size, 1)#{$important};
             }
         }
         @else if (length($size) == 2) {
             @if (nth($size, 1) != none) {
-                min-width: nth($size, 1);
+                min-width: nth($size, 1)#{$important};
             }
             @if (nth($size, 2) != none) {
-                min-height: nth($size, 2);
+                min-height: nth($size, 2)#{$important};
             }
         }
     }
@@ -913,25 +1060,25 @@ $tmp-grid-column-size: ((100% / $tmp-grid-box-column) - $tmp-grid-gutter-size);
 
     @include clearfix;
 
-    display: block;
-    width: (100% + $tmp-grid-gutter-size);
-    margin-left: -($tmp-grid-gutter-size);
+    display: block#{$important};
+    width: (100% + $tmp-grid-gutter-size)#{$important};
+    margin-left: -($tmp-grid-gutter-size)#{$important};
 }
 
 // Grid column generator.
 @mixin grid-box-col($opt: 12) {
-    display: block;
-    width: (($tmp-grid-column-size * $opt) + ($tmp-grid-gutter-size * ($opt - 1)));
-    margin-left: $tmp-grid-gutter-size;
-    float: left;
+    display: block#{$important};
+    width: (($tmp-grid-column-size * $opt) + ($tmp-grid-gutter-size * ($opt - 1)))#{$important};
+    margin-left: $tmp-grid-gutter-size#{$important};
+    float: left#{$important};
 }
 
 @mixin grid-box-push($opt: 12) {
-    padding-left: (($tmp-grid-column-size * $opt) + ($tmp-grid-gutter-size * $opt));
+    padding-left: (($tmp-grid-column-size * $opt) + ($tmp-grid-gutter-size * $opt))#{$important};
 }
 
 @mixin grid-box-pull($opt: 12) {
-    padding-right: (($tmp-grid-column-size * $opt) + ($tmp-grid-gutter-size * $opt));
+    padding-right: (($tmp-grid-column-size * $opt) + ($tmp-grid-gutter-size * $opt))#{$important};
 }
 
 // Default grid options.
@@ -978,7 +1125,7 @@ $tmp-flex-column-size: ((100% / $tmp-flex-box-column) - $tmp-flex-gutter-size);
         @include flex-align-items($ya);
     }
 
-    margin-left: -($tmp-flex-gutter-size);
+    margin-left: -($tmp-flex-gutter-size)#{$important};
 }
 
 // Grid column generator.
@@ -987,8 +1134,8 @@ $tmp-flex-column-size: ((100% / $tmp-flex-box-column) - $tmp-flex-gutter-size);
         @include flex-basis((($tmp-flex-column-size * nth($opt, 1)) + ($tmp-flex-gutter-size * (nth($opt, 1) - 1))));
     }
 
-    margin-left: $tmp-flex-gutter-size;
-    margin-bottom: #{$tmp-flex-box-gutter}px;
+    margin-left: $tmp-flex-gutter-size#{$important};
+    margin-bottom: #{$tmp-flex-box-gutter}px#{$important};
 
     @if (length($opt) >= 2) {
         @include flex-block;
@@ -1001,11 +1148,11 @@ $tmp-flex-column-size: ((100% / $tmp-flex-box-column) - $tmp-flex-gutter-size);
 }
 
 @mixin grid-push($opt: 12) {
-    padding-left: (($tmp-flex-column-size * $opt) + ($tmp-flex-gutter-size * $opt));
+    padding-left: (($tmp-flex-column-size * $opt) + ($tmp-flex-gutter-size * $opt))#{$important};
 }
 
 @mixin grid-pull($opt: 12) {
-    padding-right: (($tmp-flex-column-size * $opt) + ($tmp-flex-gutter-size * $opt));
+    padding-right: (($tmp-flex-column-size * $opt) + ($tmp-flex-gutter-size * $opt))#{$important};
 }
 
 // Temporary Value
@@ -1133,28 +1280,28 @@ $tmp-transform-value: none;
 
 @mixin position($pos: none, $off: none) {
     @if ($pos != none) {
-        position: $pos;
+        position: $pos#{$important};
     }
 
     @if ($off != none) {
         @if (length($off) >= 1) {
             @if (nth($off, 1) != none) {
-                top: nth($off, 1);
+                top: nth($off, 1)#{$important};
             }
         }
         @if (length($off) >= 2) {
             @if (nth($off, 2) != none) {
-                right: nth($off, 2);
+                right: nth($off, 2)#{$important};
             }
         }
         @if (length($off) >= 3) {
             @if (nth($off, 3) != none) {
-                bottom: nth($off, 3);
+                bottom: nth($off, 3)#{$important};
             }
         }
         @if (length($off) >= 4) {
             @if (nth($off, 4) != none) {
-                left: nth($off, 4);
+                left: nth($off, 4)#{$important};
             }
         }
 
@@ -1339,18 +1486,18 @@ $tmp-transform-value: none;
 
 // Flex box display.
 @mixin flex-block($size: none) {
-    box-sizing: border-box;
+    box-sizing: border-box#{$important};
 
     // Old Syntax
-    display: -webkit-box;
-    display: -moz-box;
+    display: -webkit-box#{$important};
+    display: -moz-box#{$important};
 
     // New Syntax
-    display: -ms-flexbox;
-    display: -webkit-flex;
+    display: -ms-flexbox#{$important};
+    display: -webkit-flex#{$important};
 
     // Global Support
-    display: flex;
+    display: flex#{$important};
 
     @if ($size != none) {
         @include size($size);
@@ -1362,40 +1509,40 @@ $tmp-transform-value: none;
     @if ($prop != none) {
         @if ($prop == false) {
             // Old Syntax
-            -webkit-box-flex: 0 0 0%;
-            -moz-box-flex: 0 0 0%;
+            -webkit-box-flex: 0 0 0%#{$important};
+            -moz-box-flex: 0 0 0%#{$important};
 
             // New Syntax
-            -webkit-flex: 0 0 0%;
+            -webkit-flex: 0 0 0%#{$important};
             -ms-flex: 0 0 0%;
 
             // Global Support
-            flex: 0 0 0%;
+            flex: 0 0 0%#{$important};
         }
         @else {
             // Old Syntax
-            -webkit-box-flex: $prop;
-            -moz-box-flex: $prop;
+            -webkit-box-flex: $prop#{$important};
+            -moz-box-flex: $prop#{$important};
 
             // New Syntax
-            -webkit-flex: $prop;
-            -ms-flex: $prop;
+            -webkit-flex: $prop#{$important};
+            -ms-flex: $prop#{$important};
 
             // Global Support
-            flex: $prop;
+            flex: $prop#{$important};
         }
     }
     @else {
         // Old Syntax
-        -webkit-box-flex: 1;
-        -moz-box-flex: 1;
+        -webkit-box-flex: 1#{$important};
+        -moz-box-flex: 1#{$important};
 
         // New Syntax
-        -webkit-flex: 1;
-        -ms-flex: 1;
+        -webkit-flex: 1#{$important};
+        -ms-flex: 1#{$important};
 
         // Global Support
-        flex: 1;
+        flex: 1#{$important};
     }
 }
 
@@ -1403,73 +1550,73 @@ $tmp-transform-value: none;
 @mixin flex-direction($dir: none) {
     @if ($dir != none) {
         // Old Syntax
-        -webkit-box-direction: $dir;
-        -webkit-box-orient: $dir;
-        -webkit-moz-direction: $dir;
-        -webkit-moz-orient: $dir;
+        -webkit-box-direction: $dir#{$important};
+        -webkit-box-orient: $dir#{$important};
+        -webkit-moz-direction: $dir#{$important};
+        -webkit-moz-orient: $dir#{$important};
 
         // New Syntax
-        -webkit-flex-direction: $dir;
-        -ms-flex-direction: $dir;
+        -webkit-flex-direction: $dir#{$important};
+        -ms-flex-direction: $dir#{$important};
 
         // Global Syntax
-        flex-direction: $dir;
+        flex-direction: $dir#{$important};
     }
 }
 
 // Flex Flow
 @mixin flex-flow($prop: none) {
     @if ($prop != none) {
-        -webkit-flex-flow: $prop;
-        -ms-flex-flow: $prop;
+        -webkit-flex-flow: $prop#{$important};
+        -ms-flex-flow: $prop#{$important};
 
-        flex-flow: $prop;
+        flex-flow: $prop#{$important};
     }
 }
 
 // Flex Basis
 @mixin flex-basis($prop: none) {
     @if ($prop != none) {
-        -ms-flex-preferred-size: $prop;
-        -webkit-flex-basis: $prop;
+        -ms-flex-preferred-size: $prop#{$important};
+        -webkit-flex-basis: $prop#{$important};
 
-        flex-basis: $prop;
+        flex-basis: $prop#{$important};
     }
 }
 
 // Flex Shrink
 @mixin flex-shrink($prop: none) {
     @if ($prop != none) {
-        -webkit-flex-shrink: $prop;
-        -ms-flex-negative: $prop;
+        -webkit-flex-shrink: $prop#{$important};
+        -ms-flex-negative: $prop#{$important};
 
-        flex-shrink: $prop;
+        flex-shrink: $prop#{$important};
     }
 }
 
 // Flex Shrink
 @mixin flex-grow($prop: none) {
     @if ($prop != none) {
-        -webkit-box-flex: $prop;
-        -moz-box-flex: $prop;
+        -webkit-box-flex: $prop#{$important};
+        -moz-box-flex: $prop#{$important};
 
-        -webkit-flex-grow: $prop;
-        -ms-flex-positive: $prop;
+        -webkit-flex-grow: $prop#{$important};
+        -ms-flex-positive: $prop#{$important};
 
-        flex-grow: $prop;
+        flex-grow: $prop#{$important};
     }
 }
 
 // Flex Order
 @mixin flex-order($prop: none) {
     @if ($prop != none) {
-        -webkit-box-ordinal-group: $prop;
-        -moz-box-ordinal-group: $prop;
+        -webkit-box-ordinal-group: $prop#{$important};
+        -moz-box-ordinal-group: $prop#{$important};
 
-        -ms-flex-order: $prop;
-        -webkit-order: $prop;
+        -ms-flex-order: $prop#{$important};
+        -webkit-order: $prop#{$important};
 
-        order: $prop;
+        order: #{$important};
     }
 }
 
@@ -1480,40 +1627,40 @@ $tmp-transform-value: none;
 
         @if ($x != none) {
             @if ($x == space-around) {
-                -webkit-box-pack: $x;
-                -moz-box-pack: $x;
+                -webkit-box-pack: $x#{$important};
+                -moz-box-pack: $x#{$important};
 
-                -webkit-justify-content: $x;
-                -ms-flex-pack: distribute;
+                -webkit-justify-content: $x#{$important};
+                -ms-flex-pack: distribute#{$important};
 
-                justify-content: $x;
+                justify-content: $x#{$important};
             }
             @else if ($x == space-between) {
-                -webkit-box-pack: $x;
-                -moz-box-pack: $x;
+                -webkit-box-pack: $x#{$important};
+                -moz-box-pack: $x#{$important};
 
-                -webkit-justify-content: $x;
-                -ms-flex-pack: justify;
+                -webkit-justify-content: $x#{$important};
+                -ms-flex-pack: justify#{$important};
 
-                justify-content: $x;
+                justify-content: $x#{$important};
             }
             @else if ($x == start or $x == end) {
-                -webkit-box-pack: flex-#{$x};
-                -moz-box-pack: flex-#{$x};
+                -webkit-box-pack: flex-#{$x}#{$important};
+                -moz-box-pack: flex-#{$x}#{$important};
 
-                -webkit-justify-content: flex-#{$x};
-                -ms-flex-pack: $x;
+                -webkit-justify-content: flex-#{$x}#{$important};
+                -ms-flex-pack: $x#{$important};
 
-                justify-content: flex-#{$x};
+                justify-content: flex-#{$x}#{$important};
             }
             @else {
-                -webkit-box-pack: $x;
-                -moz-box-pack: $x;
+                -webkit-box-pack: $x#{$important};
+                -moz-box-pack: $x#{$important};
 
-                -webkit-justify-content: $x;
-                -ms-flex-pack: $x;
+                -webkit-justify-content: $x#{$important};
+                -ms-flex-pack: $x#{$important};
 
-                justify-content: $x;
+                justify-content: $x#{$important};
             }
         }
     }
@@ -1526,21 +1673,21 @@ $tmp-transform-value: none;
 
         @if ($y != none) {
             @if ($y == start or $y == end) {
-                -webkit-box-align: flex-#{$y};
-                -moz-box-align: flex-#{$y};
+                -webkit-box-align: flex-#{$y}#{$important};
+                -moz-box-align: flex-#{$y}#{$important};
 
-                -webkit-align-items: flex-#{$y};
-                align-items: flex-#{$y};
+                -webkit-align-items: flex-#{$y}#{$important};
+                align-items: flex-#{$y}#{$important};
             }
             @else {
-                -webkit-box-align: $y;
-                -moz-box-align: $y;
+                -webkit-box-align: $y#{$important};
+                -moz-box-align: $y#{$important};
 
-                -webkit-align-items: $y;
-                align-items: $y;
+                -webkit-align-items: $y#{$important};
+                align-items: $y#{$important};
             }
 
-            -ms-flex-align: $y;
+            -ms-flex-align: $y#{$important};
         }
     }
 }
@@ -1552,37 +1699,37 @@ $tmp-transform-value: none;
 
         @if ($y != none) {
             @if ($y == start or $y == end) {
-                -webkit-align-self: flex-#{$y};
-                align-self: flex-#{$y};
+                -webkit-align-self: flex-#{$y}#{$important};
+                align-self: flex-#{$y}#{$important};
             }
             @else {
-                -webkit-align-self: $y;
-                align-self: $y;
+                -webkit-align-self: $y#{$important};
+                align-self: $y#{$important};
             }
 
-            -ms-flex-item-align: $y;
+            -ms-flex-item-align: $y#{$important};
         }
     }
 }
 
 // Flex Wrap
 @mixin flex-wrap {
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap#{$important};
+    -ms-flex-wrap: wrap#{$important};
+    flex-wrap: wrap#{$important};
 }
 
 // Flex Fill
 @mixin flex-fill {
-    width: 100%;
-    min-height: 100%;
-    margin: 0;
+    width: 100%#{$important};
+    min-height: 100%#{$important};
+    margin: 0#{$important};
 
     @-moz-document url-prefix() {
-        width: 100%;
-        height: inherit;
-        min-height: auto;
-        margin: 0;
+        width: 100%#{$important};
+        height: inherit#{$important};
+        min-height: auto#{$important};
+        margin: 0#{$important};
     }
 }
 
@@ -1823,10 +1970,10 @@ $tmp-o-gradient: none;
 
     @if ($append == false) {
         // Applying Styles
-        background-image: $tmp-w-gradient;
-        background-image: $tmp-m-gradient;
-        background-image: $tmp-s-gradient;
-        background-image: $tmp-o-gradient;
+        background-image: $tmp-w-gradient#{$important};
+        background-image: $tmp-m-gradient#{$important};
+        background-image: $tmp-s-gradient#{$important};
+        background-image: $tmp-o-gradient#{$important};
 
         // Resetting Temporary Value
         $tmp-w-gradient: none !global;
@@ -2400,4 +2547,66 @@ $desktop-uhd            : "only screen and (min-width: 3800px)";
     &::-moz-focus-inner {
         @content;
     }
+}
+
+// Mouse pointer mixins @2.0.0
+@mixin csr-default {
+    cursor: default#{$important};
+}
+@mixin csr-pointer {
+    cursor: pointer#{$important};
+}
+@mixin csr-wait {
+    cursor : wait#{$important};
+}
+@mixin csr-crosshair {
+    cursor : crosshair#{$important};
+}
+@mixin csr-text {
+    cursor : text#{$important};
+}
+@mixin csr-not-allowed {
+    cursor : not-allowed#{$important};
+}
+@mixin csr-all-scroll {
+    cursor : all-scroll#{$important};
+}
+@mixin csr-zoom-in {
+    cursor : zoom-in#{$important};
+}
+@mixin csr-zoom-out {
+    cursor : zoom-out#{$important};
+}
+
+// Box Decoration Break wrapper @2.0.0
+@mixin box-slice {
+    @include box-decoration-break(slice);
+}
+@mixin box-clone {
+    @include box-decoration-break(clone);
+}
+
+// Box Sizing wrapper @2.0.0
+@mixin resize-inherit {
+    @include box-sizing(inherit);
+}
+@mixin resize-content {
+    @include box-sizing(content-box);
+}
+@mixin resize-padding {
+    @include box-sizing(padding-box);
+}
+@mixin resize-border {
+    @include box-sizing(border-box);
+}
+
+// Direction wrapper @2.0.0.
+@mixin dir-inherit {
+    direction: inheri#{$important}t;
+}
+@mixin dir-ltr {
+    direction: ltr#{$important};
+}
+@mixin dir-rtl {
+    direction: rtl#{$important};
 }

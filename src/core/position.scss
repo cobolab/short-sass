@@ -1,27 +1,27 @@
 @mixin position($pos: none, $off: none) {
     @if ($pos != none) {
-        position: $pos;
+        position: $pos#{$important};
     }
 
     @if ($off != none) {
         @if (length($off) >= 1) {
             @if (nth($off, 1) != none) {
-                top: nth($off, 1);
+                top: nth($off, 1)#{$important};
             }
         }
         @if (length($off) >= 2) {
             @if (nth($off, 2) != none) {
-                right: nth($off, 2);
+                right: nth($off, 2)#{$important};
             }
         }
         @if (length($off) >= 3) {
             @if (nth($off, 3) != none) {
-                bottom: nth($off, 3);
+                bottom: nth($off, 3)#{$important};
             }
         }
         @if (length($off) >= 4) {
             @if (nth($off, 4) != none) {
-                left: nth($off, 4);
+                left: nth($off, 4)#{$important};
             }
         }
 

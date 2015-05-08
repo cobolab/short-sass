@@ -644,4 +644,19 @@ body {
   background-color: #ddd;
 }
 
+.head-typo {
+  -webkit-appearance: initial !important;
+  -moz-appearance: initial !important;
+  -ms-appearance: initial !important;
+  -o-appearance: initial !important;
+  appearance: initial !important;
+  display: block !important;
+  width: 100% !important;
+  font-family: "proximanova-regular";
+  font-size: 14px;
+  line-height: 24px;
+  color: #555;
+  font-weight: 600;
+}
+
 /*# sourceMappingURL=test.css.map */

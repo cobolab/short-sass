@@ -22,10 +22,10 @@ $tmp-o-gradient: none;
 
     @if ($append == false) {
         // Applying Styles
-        background-image: $tmp-w-gradient;
-        background-image: $tmp-m-gradient;
-        background-image: $tmp-s-gradient;
-        background-image: $tmp-o-gradient;
+        background-image: $tmp-w-gradient#{$important};
+        background-image: $tmp-m-gradient#{$important};
+        background-image: $tmp-s-gradient#{$important};
+        background-image: $tmp-o-gradient#{$important};
 
         // Resetting Temporary Value
         $tmp-w-gradient: none !global;

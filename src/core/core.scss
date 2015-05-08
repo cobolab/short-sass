@@ -1,21 +1,32 @@
+// Important configurator.
+$important : '';
+
+@mixin unimportant {
+    $important : '' !global;
+}
+
+@mixin important {
+    $important : ' !important' !global; @content; @include unimportant;
+}
+
 // CSS3 PREFIXER
 // @include prefixer(property, value, default);
-@mixin prefixer($prop: none, $value: none, $native: true) {
+@mixin prefixer($prop : none, $value : none, $native : true) {
     @if ($prop != none and $value != none) {
-        -webkit-#{$prop}: $value;
-        -moz-#{$prop}: $value;
-        -ms-#{$prop}: $value;
-        -o-#{$prop}: $value;
+        -webkit-#{$prop}: $value#{$important};
+        -moz-#{$prop}   : $value#{$important};
+        -ms-#{$prop}    : $value#{$important};
+        -o-#{$prop}     : $value#{$important};
 
         @if ($native == true) {
-            #{$prop}: $value;
+            #{$prop}: $value#{$important};
         }
     }
 }
 
 // MEDIA QUERY PREFIXER
 // @include media(only screen and (max-width: 800px)) { }
-@mixin media($query: none) {
+@mixin media($query : none) {
     @if ($query != none) {
         @media #{$query} {
             @content;
@@ -25,81 +36,145 @@
 
 // FONT-FACE GENERATOR MIXINS.
 // @include font-family(NAME SOURCE STYLE STRETCH WEIGHT);
-@mixin font-family($font: 'arial' 'font/arial' 400 normal normal) {
-    $name: nth($font, 1); $src: nth($font, 2); $style: normal; $weight: 400; $stretch: normal;
+@mixin font-family($font : 'arial' 'font/arial' 400 normal normal) {
+    $name : nth($font, 1);
+    $src : nth($font, 2);
+    $style : normal;
+    $weight : 400;
+    $stretch : normal;
 
     @if length($font) == 3 {
-        $style		: nth($font, 4);
+        $style : nth($font, 4);
     }
     @if length($font) == 4 {
-        $stretch	: nth($font, 5);
+        $stretch : nth($font, 5);
     }
     @if length($font) == 5 {
-        $weight		: nth($font, 3);
+        $weight : nth($font, 3);
     }
 
     @font-face {
-        font-family : "#{$name}";
-        src: local("#{$name}");
+        font-family  : "#{$name}";
+        src          : local("#{$name}");
 
-        src: url("#{$src}.eot");
-        src: url("#{$src}.eot#iefix") format("embedded-opentype"),
-             url("#{$src}.svg") format("svg"),
-             url("#{$src}.ttf") format("truetype"),
-             url("#{$src}.woff") format("woff");
+        src          : url("#{$src}.eot");
+        src          : url("#{$src}.eot#iefix") format("embedded-opentype"),
+        url("#{$src}.svg") format("svg"),
+        url("#{$src}.ttf") format("truetype"),
+        url("#{$src}.woff") format("woff");
 
-        font-style		: $style;
-        font-weight		: $weight;
-        font-stretch	: $stretch;
+        font-style   : $style;
+        font-weight  : $weight;
+        font-stretch : $stretch;
     }
 }
 
 // COMPLEX FONT GENERATOR.
 // @include font-faces(FONT-NAME SOURCE-FOLDER, STYLE);
-@mixin font-faces($font: 'arial' 'assets/font/', $style: regular) {
+@mixin font-faces($font : 'arial' 'assets/font/', $style : regular) {
     @for $i from 1 through length($style) {
         @include font-family('#{nth($font, 1)} #{nth($style, $i)}' '#{nth($font, 2)}#{nth($font, 1)}-#{nth($style, $i)}');
+    }
+}
+
+// Font Definitions
+// @include font($family, $size, $line-height, $color, $weight);
+@mixin font($option : none) {
+    @if ($option != none) {
+        // Creating variables.
+        $name : none;
+        $size : none;
+        $height : none;
+        $color : none;
+        $weight : none;
+
+        // Getting values from $options and set to variable if defined.
+        @if (length($option) >= 1) {
+            $name : nth($option, 1);
+        }
+        @if (length($option) >= 2) {
+            $size : nth($option, 2);
+        }
+        @if (length($option) >= 3) {
+            $height : nth($option, 3);
+        }
+        @if (length($option) >= 4) {
+            $color : nth($option, 4);
+        }
+        @if (length($option) >= 5) {
+            $weight : nth($option, 5);
+        }
+
+        // Appliying properties.
+        @if ($name != none) {
+            font-family : $name#{$important};
+        }
+        @if ($size != none) {
+            font-size : $size#{$important};
+        }
+        @if ($height != none) {
+            line-height : $height#{$important};
+        }
+        @if ($color != none) {
+            color : $color#{$important};
+        }
+        @if ($weight != none) {
+            font-weight : $weight#{$important};
+        }
     }
 }
 
 // BORDER SHORTHAND MIXINS.
 // @include border(0 10px solid #333);
 // @include border (0 10px 16px 20px solid #333);
-@mixin border($borval: 0 0 solid #000) {
-    $brtop: none; $brrgt: none; $brbtm: none; $brlft: none; $brstl: none; $brclr: none;
+@mixin border($borval : 0 0 solid #000000) {
+    $brtop : none;
+    $brrgt : none;
+    $brbtm : none;
+    $brlft : none;
+    $brstl : none;
+    $brclr : none;
 
     // top-bottom left-right
     @if (length($borval) >= 4) {
-        $brtop: nth($borval, 1); $brrgt: nth($borval, 2); $brbtm: nth($borval, 1); $brlft: nth($borval, 2);
+        $brtop : nth($borval, 1);
+        $brrgt : nth($borval, 2);
+        $brbtm : nth($borval, 1);
+        $brlft : nth($borval, 2);
 
-        $brstl: nth($borval, 3); $brclr: nth($borval, 4);
+        $brstl : nth($borval, 3);
+        $brclr : nth($borval, 4);
     }
 
     // top right bottom
     @if (length($mobile) >= 5) {
-        $brbtm: nth($borval, 3); $brlft: none;
+        $brbtm : nth($borval, 3);
+        $brlft : none;
 
-        $brstl: nth($borval, 4); $brclr: nth($borval, 5);
+        $brstl : nth($borval, 4);
+        $brclr : nth($borval, 5);
     }
 
     // top right bottom left
     @if (length($borval) == 6) {
-        $brbtm: nth($borval, 3); $brlft: nth($borval, 4);
+        $brbtm : nth($borval, 3);
+        $brlft : nth($borval, 4);
 
-        $brstl: nth($borval, 5); $brclr: nth($borval, 6);
+        $brstl : nth($borval, 5);
+        $brclr : nth($borval, 6);
     }
 
     @if ($brtop != none) {
-        border-top: $brtop $brstl $brclr;
+        border-top : $brtop $brstl $brclr#{$important};
     }
     @if ($brrgt != none) {
-        border-right: $brrgt $brstl $brclr;
+        border-right : $brrgt $brstl $brclr#{$important};
     }
     @if ($brbtm != none) {
-        border-bottom: $brbtm $brstl $brclr;
+        border-bottom : $brbtm $brstl $brclr#{$important};
     }
     @if ($brlft != none) {
-        border-left: $brlft $brstl $brclr;
+        border-left : $brlft $brstl $brclr#{$important};
     }
 }
 
@@ -107,36 +182,35 @@
 // @include long-shadow-generator(top, left, distance, blur, color);
 @mixin long-shadow-generator($type, $config) {
     @if (length($config) == 5) {
-        $tpe: nth($type, 1);
-        $top: nth($config, 1);
-        $lft: nth($config, 2);
-        $dis: nth($config, 3);
-        $blr: nth($config, 4);
-        $clr: nth($config, 5);
+        $tpe : nth($type, 1);
+        $top : nth($config, 1);
+        $lft : nth($config, 2);
+        $dis : nth($config, 3);
+        $blr : nth($config, 4);
+        $clr : nth($config, 5);
 
-        $value: shadow-value($top, $lft, $dis, $blr, $clr);
+        $value : shadow-value($top, $lft, $dis, $blr, $clr);
 
         @include prefixer($type, $value, true);
     }
 }
 
 // DISPLAY SETTER.
-@mixin set-display($display: none, $size: none) {
-    display: $display;
+@mixin set-display($display : none, $size : none) {
+    display : $display#{$important};
 
     @if ($size != none) {
         @if (length($size) == 1) {
             @if (nth($size, 1) != none) {
-                width: nth($size, 1);
-                height: nth($size, 1);
+                width  : nth($size, 1)#{$important};
+                height : nth($size, 1)#{$important};
             }
-        }
-        @else if (length($size) == 2) {
+        } @else if (length($size) == 2) {
             @if (nth($size, 1) != none) {
-                width: nth($size, 1);
+                width : nth($size, 1)#{$important};
             }
             @if (nth($size, 2) != none) {
-                height: nth($size, 2);
+                height : nth($size, 2)#{$important};
             }
         }
     }

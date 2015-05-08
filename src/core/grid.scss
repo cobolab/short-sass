@@ -23,25 +23,25 @@ $tmp-grid-column-size: ((100% / $tmp-grid-box-column) - $tmp-grid-gutter-size);
 
     @include clearfix;
 
-    display: block;
-    width: (100% + $tmp-grid-gutter-size);
-    margin-left: -($tmp-grid-gutter-size);
+    display: block#{$important};
+    width: (100% + $tmp-grid-gutter-size)#{$important};
+    margin-left: -($tmp-grid-gutter-size)#{$important};
 }
 
 // Grid column generator.
 @mixin grid-box-col($opt: 12) {
-    display: block;
-    width: (($tmp-grid-column-size * $opt) + ($tmp-grid-gutter-size * ($opt - 1)));
-    margin-left: $tmp-grid-gutter-size;
-    float: left;
+    display: block#{$important};
+    width: (($tmp-grid-column-size * $opt) + ($tmp-grid-gutter-size * ($opt - 1)))#{$important};
+    margin-left: $tmp-grid-gutter-size#{$important};
+    float: left#{$important};
 }
 
 @mixin grid-box-push($opt: 12) {
-    padding-left: (($tmp-grid-column-size * $opt) + ($tmp-grid-gutter-size * $opt));
+    padding-left: (($tmp-grid-column-size * $opt) + ($tmp-grid-gutter-size * $opt))#{$important};
 }
 
 @mixin grid-box-pull($opt: 12) {
-    padding-right: (($tmp-grid-column-size * $opt) + ($tmp-grid-gutter-size * $opt));
+    padding-right: (($tmp-grid-column-size * $opt) + ($tmp-grid-gutter-size * $opt))#{$important};
 }
 
 // Default grid options.
@@ -88,7 +88,7 @@ $tmp-flex-column-size: ((100% / $tmp-flex-box-column) - $tmp-flex-gutter-size);
         @include flex-align-items($ya);
     }
 
-    margin-left: -($tmp-flex-gutter-size);
+    margin-left: -($tmp-flex-gutter-size)#{$important};
 }
 
 // Grid column generator.
@@ -97,8 +97,8 @@ $tmp-flex-column-size: ((100% / $tmp-flex-box-column) - $tmp-flex-gutter-size);
         @include flex-basis((($tmp-flex-column-size * nth($opt, 1)) + ($tmp-flex-gutter-size * (nth($opt, 1) - 1))));
     }
 
-    margin-left: $tmp-flex-gutter-size;
-    margin-bottom: #{$tmp-flex-box-gutter}px;
+    margin-left: $tmp-flex-gutter-size#{$important};
+    margin-bottom: #{$tmp-flex-box-gutter}px#{$important};
 
     @if (length($opt) >= 2) {
         @include flex-block;
@@ -111,9 +111,9 @@ $tmp-flex-column-size: ((100% / $tmp-flex-box-column) - $tmp-flex-gutter-size);
 }
 
 @mixin grid-push($opt: 12) {
-    padding-left: (($tmp-flex-column-size * $opt) + ($tmp-flex-gutter-size * $opt));
+    padding-left: (($tmp-flex-column-size * $opt) + ($tmp-flex-gutter-size * $opt))#{$important};
 }
 
 @mixin grid-pull($opt: 12) {
-    padding-right: (($tmp-flex-column-size * $opt) + ($tmp-flex-gutter-size * $opt));
+    padding-right: (($tmp-flex-column-size * $opt) + ($tmp-flex-gutter-size * $opt))#{$important};
 }

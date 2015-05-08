@@ -1,33 +1,33 @@
 
 // X Alignment
 @mixin center-align {
-    text-align: center;
+    text-align: center#{$important};
 }
 @mixin middle-align {
-    vertical-align: middle;
+    vertical-align: middle#{$important};
 }
 @mixin align-left {
-    text-align: left;
+    text-align: left#{$important};
 }
 @mixin align-right {
-    text-align: right;
+    text-align: right#{$important};
 }
 @mixin align-center {
-    text-align: center;
+    text-align: center#{$important};
 }
 
 // Y Alignment
 @mixin align-top {
-    vertical-align: top;
+    vertical-align: top#{$important};
 }
 @mixin align-middle {
-    vertical-align: middle;
+    vertical-align: middle#{$important};
 }
 @mixin align-bottom {
-    vertical-align: bottom;
+    vertical-align: bottom#{$important};
 }
 @mixin align-baseline {
-    vertical-align: baseline;
+    vertical-align: baseline#{$important};
 }
 
 // Mixed Alignment

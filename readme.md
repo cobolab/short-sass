@@ -157,6 +157,17 @@ body {
   -ms-flex-align: center;
 }
 
+// @2.0.0 new samples
+.new-sample {
+	// Important block. We use important block to give !important value to all properties defined by mixins.
+	@include important {
+		@include block(100% none);
+		@include font('Arial' 12px 22px orange bold); 
+	}
+	
+	@include border-radius(3px);
+}
+
 ```
 
 ### **Download**
@@ -179,6 +190,7 @@ We still working on documentation and trying to add more shorthand. Feel free to
 ### **Release History**
 ***
 
+* 2015-05-09          v2.0.0          "Adding important block (to support !important in mixins) and some property wrappers."
 * 2015-03-10          v1.1.6          "Fixing issues"
 * 2015-03-10          v1.1.5          "Fixing issues"
 * 2015-03-03          v1.1.4          "Fixing issues"
