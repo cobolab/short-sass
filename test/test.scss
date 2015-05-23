@@ -1,4 +1,5 @@
 @import "../src/short-sass";
+@import "lama.css";
 
 // Import normalize and resetter.
 @include normalize;
@@ -148,4 +149,58 @@ $testing: appearance;
 }
 .wrapper-y {
     @include touch-scroll-y;
+}
+
+.input-text {
+    @include important {
+        @include appearance(initial);
+    }
+
+    @include block(100% none);
+
+    margin: 0;
+}
+
+
+.simple-grid {
+    @include grid-box(1080 12 30);
+
+    li {
+        @include grid-box-col(4);
+
+        @include tablet {
+            @include grid-box-col(6);
+        }
+
+        @include mobile {
+            @include grid-box-col(12);
+        }
+    }
+}
+
+.gradient {
+    @include linear-gradient((-90deg, rgba(#fff, 0.2), rgba(#000, 0.2)), true);
+    @include linear-gradient((-90deg, rgba(#dff, 0.2), rgba(#9df, 0.2)), true);
+    @include linear-gradient((-90deg, rgba(#566, 0.2), rgba(#88d, 0.2)));
+}
+
+.simple-boxes {
+    @include important {
+        @include block(100% 320px);
+        @include grid-box(1080 12 30);
+
+        li {
+            @include grid-box-col(4);
+
+            @include tablet {
+                @include grid-box-col(6);
+            }
+
+            @include mobile {
+                @include grid-box-col(12);
+            }
+        }
+    }
+
+    @include font("proximanova-regular" 16px 37px #999);
 }

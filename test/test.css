@@ -1,5 +1,6 @@
 @charset "UTF-8";
 /* Print Styles ----------------------------------------- */
+@import url(lama.css);
 /*
  * ADAPTING BOILERPLATE.CSS
  * ---------------------------------------------------------------------------
@@ -672,6 +673,103 @@ body {
 .wrapper-y {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+}
+
+.input-text {
+  -webkit-appearance: initial !important;
+  -moz-appearance: initial !important;
+  -ms-appearance: initial !important;
+  -o-appearance: initial !important;
+  appearance: initial !important;
+  display: block;
+  width: 100%;
+  margin: 0;
+}
+
+.simple-grid {
+  *zoom: 1;
+  display: block;
+  width: 102.77778%;
+  margin-left: -2.77778%;
+}
+.simple-grid:before, .simple-grid:after {
+  content: "";
+  display: table;
+}
+.simple-grid:after {
+  clear: both;
+}
+.simple-grid li {
+  display: block;
+  width: 30.55556%;
+  margin-left: 2.77778%;
+  float: left;
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px), (min-width: 768px) and (max-width: 1200px) {
+  .simple-grid li {
+    display: block;
+    width: 47.22222%;
+    margin-left: 2.77778%;
+    float: left;
+  }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 767px) {
+  .simple-grid li {
+    display: block;
+    width: 97.22222%;
+    margin-left: 2.77778%;
+    float: left;
+  }
+}
+
+.gradient {
+  background-image: -webkit-linear-gradient(-90deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.2)), -webkit-linear-gradient(-90deg, rgba(221, 255, 255, 0.2), rgba(153, 221, 255, 0.2)), -webkit-linear-gradient(-90deg, rgba(85, 102, 102, 0.2), rgba(136, 136, 221, 0.2));
+  background-image: -moz-linear-gradient(-90deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.2)), -moz-linear-gradient(-90deg, rgba(221, 255, 255, 0.2), rgba(153, 221, 255, 0.2)), -moz-linear-gradient(-90deg, rgba(85, 102, 102, 0.2), rgba(136, 136, 221, 0.2));
+  background-image: -ms-linear-gradient(-90deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.2)), -ms-linear-gradient(-90deg, rgba(221, 255, 255, 0.2), rgba(153, 221, 255, 0.2)), -ms-linear-gradient(-90deg, rgba(85, 102, 102, 0.2), rgba(136, 136, 221, 0.2));
+  background-image: -o-linear-gradient(-90deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.2)), -o-linear-gradient(-90deg, rgba(221, 255, 255, 0.2), rgba(153, 221, 255, 0.2)), -o-linear-gradient(-90deg, rgba(85, 102, 102, 0.2), rgba(136, 136, 221, 0.2));
+}
+
+.simple-boxes {
+  display: block !important;
+  width: 100% !important;
+  height: 320px !important;
+  *zoom: 1 !important;
+  display: block !important;
+  width: 102.77778% !important;
+  margin-left: -2.77778% !important;
+  font-family: "proximanova-regular";
+  font-size: 16px;
+  line-height: 37px;
+  color: #999;
+}
+.simple-boxes:before, .simple-boxes:after {
+  content: "" !important;
+  display: table !important;
+}
+.simple-boxes:after {
+  clear: both !important;
+}
+.simple-boxes li {
+  display: block !important;
+  width: 30.55556% !important;
+  margin-left: 2.77778% !important;
+  float: left !important;
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px), (min-width: 768px) and (max-width: 1200px) {
+  .simple-boxes li {
+    display: block !important;
+    width: 47.22222% !important;
+    margin-left: 2.77778% !important;
+    float: left !important;
+  }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 767px) {
+  .simple-boxes li {
+    display: block !important;
+    width: 97.22222% !important;
+    margin-left: 2.77778% !important;
+    float: left !important;
+  }
 }
 
 /*# sourceMappingURL=test.css.map */

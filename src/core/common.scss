@@ -28,13 +28,13 @@
 // Container.
 @mixin container($arg: 960px 0 0) {
     width: 100%#{$important};
-    max-width: nth($arg, 1)#{$important};
+    max-width: #{nth($arg, 1)}#{$important};
     margin: 0 auto#{$important};
 
     @if (length($arg) >= 2) {
-        padding-left: nth($arg, 2)#{$important};
+        padding-left: #{nth($arg, 2)}#{$important};
     }
     @if (length($arg) == 3) {
-        padding-right: nth($arg, 3)#{$important};
+        padding-right: #{nth($arg, 3)}#{$important};
     }
 }

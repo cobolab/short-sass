@@ -324,15 +324,15 @@ $important : '';
     @if ($size != none) {
         @if (length($size) == 1) {
             @if (nth($size, 1) != none) {
-                width  : nth($size, 1)#{$important};
-                height : nth($size, 1)#{$important};
+                width  : #{nth($size, 1)}#{$important};
+                height : #{nth($size, 1)}#{$important};
             }
         } @else if (length($size) == 2) {
             @if (nth($size, 1) != none) {
-                width : nth($size, 1)#{$important};
+                width : #{nth($size, 1)}#{$important};
             }
             @if (nth($size, 2) != none) {
-                height : nth($size, 2)#{$important};
+                height : #{nth($size, 2)}#{$important};
             }
         }
     }
@@ -594,14 +594,14 @@ $important : '';
 // Container.
 @mixin container($arg: 960px 0 0) {
     width: 100%#{$important};
-    max-width: nth($arg, 1)#{$important};
+    max-width: #{nth($arg, 1)}#{$important};
     margin: 0 auto#{$important};
 
     @if (length($arg) >= 2) {
-        padding-left: nth($arg, 2)#{$important};
+        padding-left: #{nth($arg, 2)}#{$important};
     }
     @if (length($arg) == 3) {
-        padding-right: nth($arg, 3)#{$important};
+        padding-right: #{nth($arg, 3)}#{$important};
     }
 }
 
@@ -956,16 +956,16 @@ $tmp-transition-value: none;
     @if ($size != none) {
         @if (length($size) == 1) {
             @if (nth($size, 1) != none) {
-                width: nth($size, 1)#{$important};
-                height: nth($size, 1)#{$important};
+                width: #{nth($size, 1)}#{$important};
+                height: #{nth($size, 1)}#{$important};
             }
         }
         @else if (length($size) == 2) {
             @if (nth($size, 1) != none) {
-                width: nth($size, 1)#{$important};
+                width: #{nth($size, 1)}#{$important};
             }
             @if (nth($size, 2) != none) {
-                height: nth($size, 2)#{$important};
+                height: #{nth($size, 2)}#{$important};
             }
         }
     }
@@ -974,16 +974,16 @@ $tmp-transition-value: none;
     @if ($size != none) {
         @if (length($size) == 1) {
             @if (nth($size, 1) != none) {
-                max-width: nth($size, 1)#{$important};
-                max-height: nth($size, 1)#{$important};
+                max-width: #{nth($size, 1)}#{$important};
+                max-height: #{nth($size, 1)}#{$important};
             }
         }
         @else if (length($size) == 2) {
             @if (nth($size, 1) != none) {
-                max-width: nth($size, 1)#{$important};
+                max-width: #{nth($size, 1)}#{$important};
             }
             @if (nth($size, 2) != none) {
-                max-height: nth($size, 2)#{$important};
+                max-height: #{nth($size, 2)}#{$important};
             }
         }
     }
@@ -992,16 +992,16 @@ $tmp-transition-value: none;
     @if ($size != none) {
         @if (length($size) == 1) {
             @if (nth($size, 1) != none) {
-                min-width: nth($size, 1)#{$important};
-                min-height: nth($size, 1)#{$important};
+                min-width: #{nth($size, 1)}#{$important};
+                min-height: #{nth($size, 1)}#{$important};
             }
         }
         @else if (length($size) == 2) {
             @if (nth($size, 1) != none) {
-                min-width: nth($size, 1)#{$important};
+                min-width: #{nth($size, 1)}#{$important};
             }
             @if (nth($size, 2) != none) {
-                min-height: nth($size, 2)#{$important};
+                min-height: #{nth($size, 2)}#{$important};
             }
         }
     }
@@ -1258,22 +1258,22 @@ $tmp-transform-value: none;
     @if ($off != none) {
         @if (length($off) >= 1) {
             @if (nth($off, 1) != none) {
-                top: nth($off, 1)#{$important};
+                top: #{nth($off, 1)}#{$important};
             }
         }
         @if (length($off) >= 2) {
             @if (nth($off, 2) != none) {
-                right: nth($off, 2)#{$important};
+                right: #{nth($off, 2)}#{$important};
             }
         }
         @if (length($off) >= 3) {
             @if (nth($off, 3) != none) {
-                bottom: nth($off, 3)#{$important};
+                bottom: #{nth($off, 3)}#{$important};
             }
         }
         @if (length($off) >= 4) {
             @if (nth($off, 4) != none) {
-                left: nth($off, 4)#{$important};
+                left: #{nth($off, 4)}#{$important};
             }
         }
 

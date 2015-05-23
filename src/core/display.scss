@@ -92,16 +92,16 @@
     @if ($size != none) {
         @if (length($size) == 1) {
             @if (nth($size, 1) != none) {
-                width: nth($size, 1)#{$important};
-                height: nth($size, 1)#{$important};
+                width: #{nth($size, 1)}#{$important};
+                height: #{nth($size, 1)}#{$important};
             }
         }
         @else if (length($size) == 2) {
             @if (nth($size, 1) != none) {
-                width: nth($size, 1)#{$important};
+                width: #{nth($size, 1)}#{$important};
             }
             @if (nth($size, 2) != none) {
-                height: nth($size, 2)#{$important};
+                height: #{nth($size, 2)}#{$important};
             }
         }
     }
@@ -110,16 +110,16 @@
     @if ($size != none) {
         @if (length($size) == 1) {
             @if (nth($size, 1) != none) {
-                max-width: nth($size, 1)#{$important};
-                max-height: nth($size, 1)#{$important};
+                max-width: #{nth($size, 1)}#{$important};
+                max-height: #{nth($size, 1)}#{$important};
             }
         }
         @else if (length($size) == 2) {
             @if (nth($size, 1) != none) {
-                max-width: nth($size, 1)#{$important};
+                max-width: #{nth($size, 1)}#{$important};
             }
             @if (nth($size, 2) != none) {
-                max-height: nth($size, 2)#{$important};
+                max-height: #{nth($size, 2)}#{$important};
             }
         }
     }
@@ -128,16 +128,16 @@
     @if ($size != none) {
         @if (length($size) == 1) {
             @if (nth($size, 1) != none) {
-                min-width: nth($size, 1)#{$important};
-                min-height: nth($size, 1)#{$important};
+                min-width: #{nth($size, 1)}#{$important};
+                min-height: #{nth($size, 1)}#{$important};
             }
         }
         @else if (length($size) == 2) {
             @if (nth($size, 1) != none) {
-                min-width: nth($size, 1)#{$important};
+                min-width: #{nth($size, 1)}#{$important};
             }
             @if (nth($size, 2) != none) {
-                min-height: nth($size, 2)#{$important};
+                min-height: #{nth($size, 2)}#{$important};
             }
         }
     }

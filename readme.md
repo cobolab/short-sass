@@ -190,6 +190,7 @@ We still working on documentation and trying to add more shorthand. Feel free to
 ### **Release History**
 ***
 
+* 2015-05-23          v2.1.1          "Fixing Important placeholder that causing nth() not rendered correctly."
 * 2015-05-09          v2.1.0          "Adding touch-scroll and keyframe mixin."
 * 2015-05-09          v2.0.0          "Adding important block (to support !important in mixins) and some property wrappers."
 * 2015-03-10          v1.1.6          "Fixing issues"
